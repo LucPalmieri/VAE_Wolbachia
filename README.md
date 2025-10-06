@@ -17,7 +17,9 @@ metrics, and archive the resulting figures.
 ├── src/
 │   └── vae_analysis.py
 └── data/
-    └── (place input `.txt` datasets here)
+    └── wolbachia_47genes_host_newIDS.txt
+    └── wolbachia_47genes_unsupervised_newIDS.txt
+    └── wolbachia_47genes_country_newIDS.txt
 ```
 
 Generated plots are written to the `vae_results/` directory (ignored by Git).
