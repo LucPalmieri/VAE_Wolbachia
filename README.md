@@ -4,10 +4,15 @@ Custom VAE implementation for analyzing genetic structure in *Wolbachia* bacteri
 
 ## Requirements: 
 Python 3.8+
+
 tensorflow 2.13.1
+
 scikit-learn 1.3.2
+
 numpy 1.24.3
+
 matplotlib 3.7.1
+
 scipy 1.10.1
 
 ## Usage
@@ -63,4 +68,4 @@ Input genomic alignments and latent space coordinates are deposited in [ZENODO r
 
 If you use this code, please cite:
 
-Corretto, E., Ragionieri, L., Wolfe, T.M.,Palmieri, L., Serbina, L.S., Bruzzese, D.J., Klasson, L., Feder, J.L., Stauffer, C., and Schuler, H. (2026). Interspecific Horizontal Wolbachia Transmission Between Native and Invasive Fruit Flies: Tracing a Rapid Wolbachia Spread in Slow Motion. Current Biology.
+Corretto, E., Ragionieri, L., Wolfe, T.M., Palmieri, L., Serbina, L.S., Bruzzese, D.J., Klasson, L., Feder, J.L., Stauffer, C., and Schuler, H. (2026). Interspecific Horizontal Wolbachia Transmission Between Native and Invasive Fruit Flies: Tracing a Rapid Wolbachia Spread in Slow Motion. Current Biology.
