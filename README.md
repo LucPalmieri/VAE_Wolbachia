@@ -1,92 +1,66 @@
-# Wolbachia Species Delimitation VAE
+# Wolbachia Strain Differentiation using Variational Autoencovers
 
-This repository packages the Variational Auto-Encoder (VAE) workflow that was
-shared as a standalone script so that the analysis can be easily reproduced and
-version-controlled.  The code targets TensorFlow 2.x via the
-`tensorflow.compat.v1` API to remain compatible with the original implementation
-and makes it straightforward to run multiple model initialisations, collect
-metrics, and archive the resulting figures.
+Custom VAE implementation for analyzing genetic structure in *Wolbachia* bacterial endosymbionts using 47-gene genomic alignments.
 
-## Repository layout
+## Requirements: 
+Python 3.8+
+tensorflow 2.13.1
+scikit-learn 1.3.2
+numpy 1.24.3
+matplotlib 3.7.1
+scipy 1.10.1
 
-```
-.
-├── LICENSE
-├── README.md
-├── requirements.txt
-├── src/
-│   └── vae_analysis.py
-└── data/
-    └── wolbachia_47genes_host_newIDS.txt
-    └── wolbachia_47genes_unsupervised_newIDS.txt
-    └── wolbachia_47genes_country_newIDS.txt
+## Usage
+
+### 1. Convert PHYLIP alignment to one-hot encoding
+
+```bash
+python load_phylip.py <input.phy> <output.txt>
 ```
 
-Generated plots are written to the `vae_results/` directory (ignored by Git).
+**Input:** PHYLIP-formatted alignment (sequential or interleaved)  
+**Output:** One-hot encoded sequences (text file)
 
-## Dataset format
+### 2. Run supervised VAE analysis
 
-The script expects plain-text input files where each line encodes a sample
-using the following structure:
-
-```
-<sample_id> <group_label> [v1,v2,...,vk] [v1,v2,...,vk] ...
+```bash
+python supervised_vae_biological_groups.py <datafile.txt>
 ```
 
-The Wolbachia file `wolbachia_47genes_host_newIDs.txt`, for instance, contains
-47 genes (columns) encoded as one-hot vectors.  Place the dataset in the `data/`
-folder so the provided commands work as-is.
+**Optional arguments:**
+- `--runs N` : Number of independent runs (default: 5)
+- `--latent-dim N` : Latent space dimensions (default: 2)
 
-## Getting started
+**Example:**
+```bash
+python supervised_vae_biological_groups.py wolbachia_47genes_strain_newIDs.txt --runs 5
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/<your-user>/Species_delimitation_Wolbachia.git
-   cd Species_delimitation_Wolbachia
-   ```
+**Output:** Results saved to `supervised_results/by_{category}/`
+- Latent coordinates (TXT, JSON)
+- Comprehensive analysis report (TXT)
+- Publication-quality figures (PDF)
+- Training metrics and convergence plots
 
-2. **Create an isolated Python environment** (recommended)
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows use `.venv\\Scripts\\activate`
-   ```
+## Input Data Format
 
-3. **Install dependencies**
-   ```bash
-   pip install --upgrade pip
-   pip install -r requirements.txt
-   ```
+The supervised VAE script expects one-hot encoded data with sample labels:
 
-4. **Run the analysis**
-   ```bash
-   python -m src.vae_analysis \
-       --data data/wolbachia_47genes_host_newIDs.txt \
-       --runs 3 \
-       --output-dir vae_results
-   ```
+```
+sample_name group [1,0,0,0] [0,1,0,0] [0,0,1,0] ...
+```
 
-   Use `--show-plot` to display intermediate figures during training and
-   `--verbose` for more detailed logging.
+Where:
+- Column 1: Sample identifier
+- Column 2: Biological group label (e.g., CER, CIN, SINGLE)
+- Remaining columns: One-hot encoded nucleotide vectors
 
-5. **Review outputs**
-   - `vae_results/` contains a timestamped PDF summary and per-run reports.
-   - Console logs include per-run silhouette scores and aggregate statistics.
+## Data Availability
 
-## Reproducibility tips
+Input genomic alignments and latent space coordinates are deposited in [ZENODO repository] under accession [number].
 
-- The script seeds NumPy and TensorFlow (default seed: 42).  Override via the
-  `--seed` flag to explore variability between runs.
-- All hyperparameters (latent size, hidden layers, dropout, learning rate,
-  training schedule) are defined inside `mk_model` within
-  `src/vae_analysis.py`.  Adjust them there if needed.
+## Citation
 
-## Contributing
+If you use this code, please cite:
 
-Issues and pull requests are welcome.  Please open an issue before submitting
-major changes so we can discuss the approach.  When contributing, remember to
-run the analysis locally to ensure everything works end-to-end.
-
-## License
-
-This project is distributed under the terms of the MIT License.  See the
-[LICENSE](LICENSE) file for details.
+Corretto, E., Ragionieri, L., Wolfe, T.M.,Palmieri, L., Serbina, L.S., Bruzzese, D.J., Klasson, L., Feder, J.L., Stauffer, C., and Schuler, H. (2026). Interspecific Horizontal Wolbachia Transmission Between Native and Invasive Fruit Flies: Tracing a Rapid Wolbachia Spread in Slow Motion. Current Biology.
