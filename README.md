@@ -62,7 +62,7 @@ Where:
 
 ## Data Availability
 
-Input genomic alignments and latent space coordinates are deposited in [ZENODO repository] under accession [number].
+Input genomic alignments and latent space coordinates are deposited in [ZENODO](https://zenodo.org/) under accession [https://doi.org/10.5281/zenodo.18431813](https://doi.org/10.5281/zenodo.18431813)
 
 ## Citation
 
