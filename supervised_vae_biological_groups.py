@@ -10,7 +10,7 @@ data file (column 2). Works with any grouping scheme:
 - dual, single (infection type)
 - hostA, hostB, hostC (by host)
 - supergroup_A, supergroup_B (phylogenetic)
-- Any other biological hypothesis you want to test!
+- Any other biological hypothesis you want to test.
 
 Colors are automatically assigned based on the number of unique labels.
 
@@ -618,7 +618,7 @@ with open(json_file, 'w') as f:
 print(f"  JSON results saved to: {json_file}")
 
 # ============================================================================
-# CREATE COMPREHENSIVE VISUALIZATION
+# CREATE VISUALIZATION
 # ============================================================================
 print("\nCreating comprehensive visualization...")
 
@@ -714,7 +714,7 @@ BEST RUN: #{best_run['run']}
   Separation Ratio: {best_run['metrics']['separation_ratio']:.4f}
 
 CONVERGENCE:
-  {'✓ EXCELLENT' if sil_cv < 5 else '✓ GOOD' if sil_cv < 10 else '⚠ NEEDS ATTENTION'}
+  {'✓ EXCELLENT' if sil_cv < 5 else '✓ GOOD' if sil_cv < 10 else 'NEEDS ATTENTION'}
 
 {'='*40}
 """
@@ -813,11 +813,11 @@ with open(report_file, 'w') as f:
     
     f.write("CONVERGENCE QUALITY:\n")
     if sil_cv < 5:
-        f.write("  ✓ EXCELLENT - CV < 5% (highly reproducible results)\n")
+        f.write("EXCELLENT - CV < 5% (highly reproducible results)\n")
     elif sil_cv < 10:
-        f.write("  ✓ GOOD - CV between 5-10% (reproducible results)\n")
+        f.write("GOOD - CV between 5-10% (reproducible results)\n")
     else:
-        f.write("  ⚠ NEEDS ATTENTION - CV > 10% (variable results across runs)\n")
+        f.write("NEEDS ATTENTION - CV > 10% (variable results across runs)\n")
     f.write("\n")
     
     f.write("="*70 + "\n")
@@ -858,26 +858,6 @@ with open(report_file, 'w') as f:
     f.write(f"   Publication-quality figure (300 DPI)\n\n")
     
     f.write("="*70 + "\n")
-    f.write("INTERPRETATION FOR MANUSCRIPT:\n")
-    f.write("="*70 + "\n\n")
-    f.write("The two-stage VAE training successfully learned a latent space\n")
-    f.write("representation that captures the biological structure of Wolbachia\n")
-    f.write("strains based on 47-gene sequences.\n\n")
-    
-    if sil_mean > 0.5:
-        f.write("The high silhouette score indicates that the biological groups\n")
-        f.write(f"({', '.join(np.unique(biological_labels))}) are well-separated in the latent space,\n")
-        f.write("suggesting that the VAE effectively captured biologically\n")
-        f.write("meaningful genetic variation.\n\n")
-    else:
-        f.write("The moderate silhouette score suggests some overlap between\n")
-        f.write("biological groups in the latent space, which may reflect\n")
-        f.write("genetic similarity or shared evolutionary history.\n\n")
-    
-    f.write("The low coefficient of variation (CV) across independent runs\n")
-    f.write("demonstrates that the results are reproducible and robust.\n\n")
-    
-    f.write("="*70 + "\n")
 
 print(f"  Report saved to: {report_file}")
 
@@ -889,7 +869,8 @@ print(f"  Silhouette Score: {best_run['metrics']['silhouette']:.4f}")
 print(f"  Separation Ratio: {best_run['metrics']['separation_ratio']:.4f}")
 print(f"Convergence: CV={sil_cv:.2f}%")
 print(f"\nResults saved to: {OUTPUT_DIR}/")
-print(f"  - {report_file} ⭐ READ THIS FIRST")
+print(f"  - {report_file} READ THIS FIRST")
 print(f"  - {output_file}")
-print(f"  - {pub_plot_file} ⭐ PUBLICATION FIGURE")
+print(f"  - {pub_plot_file} PUBLICATION FIGURE")
 print("="*70)
+###
