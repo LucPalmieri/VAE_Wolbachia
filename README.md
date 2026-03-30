@@ -87,4 +87,4 @@ Input genomic alignments and latent space coordinates are deposited in [ZENODO](
 
 If you use this code, please cite:
 
-Corretto, E., Ragionieri, L., Wolfe, T.M., Palmieri, L., Serbina, L.S., Bruzzese, D.J., Klasson, L., Feder, J.L., Stauffer, C., and Schuler, H. (2026). Interspecific Horizontal Wolbachia Transmission Between Native and Invasive Fruit Flies: Tracing a Rapid Wolbachia Spread in Slow Motion. Current Biology.
+Corretto, E., Ragionieri, L., Wolfe, T.M., Palmieri, L., Serbina, L.S., Bruzzese, D.J., Klasson, L., Feder, J.L., Stauffer, C., and Schuler, H. (2026). Interspecific Horizontal Wolbachia Transmission Between Native and Invasive Fruit Flies: Tracing a Rapid Wolbachia Spread in Slow Motion. Current Biology[under review].
